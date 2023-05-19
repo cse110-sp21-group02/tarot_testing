@@ -38,6 +38,18 @@ const cards = [
   // Create a function to randomly select cards
   
   function drawCards() {
+
+    // Added: validate input before drawing cards:
+    // using .value.trim() will get the user inputted text and get rid of any whitespace that has been entered.
+    const questionToValidate = document.getElementById("question").value.trim();
+    // if the question the user has given us is empty, do not draw any cards
+    // make edits here if we want to further specify input requirements
+    if(questionToValidate === "") {
+      // this alert will notify the user of why the cards are not drawn
+      alert("Please enter a question before submitting.");
+      return;
+    }
+
     // Get a random number between 0 and the number of cards
     // random select 3 cards no duplicate
     const randomIndexes = [];
@@ -90,6 +102,8 @@ const cards = [
     document.getElementById("draw-cards").disabled = false;
     document.getElementById("cards").innerHTML = "";
     document.getElementById("reading").innerHTML = "";
+    // Added: when reset is hit, input field for question will be cleared
+    document.getElementById("question").value = "";
   });
 
   function generateReading(card) {
